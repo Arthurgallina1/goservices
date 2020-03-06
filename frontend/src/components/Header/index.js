@@ -1,11 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux';
 import { Container, Profile, Content } from './styles';
 import logo from '../../assets/apoio.png'
 import { Link } from 'react-router-dom'
 import Notifications from '../Notifications'
 
 
-export default function index() {
+export default function Header() {
+    const profile = useSelector(state => state.user.profile);
     return (
         <Container>
             <Content>
@@ -18,10 +20,10 @@ export default function index() {
                     <Notifications />
                     <Profile>
                         <div>
-                            <strong>Arthur</strong>
+                            <strong>{profile.name}</strong>
                             <Link to="/profile">My Profile</Link>
                         </div>
-                        <img src="https://api.adorable.io/avatars/50/abott@adorable.png" alt="" />
+                        <img src={profile.avatar.url || 'https://api.adorable.io/avatars/50/abott@adorable.png'} alt="" />
                     </Profile>
                 </aside>
             </Content>
