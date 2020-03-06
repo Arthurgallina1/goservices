@@ -7,7 +7,8 @@ class SchedullerController {
     async index(req,res) {
         const checkUserProvider = await User.findOne({
             where: {
-                id: 11, provider: true
+                id: req.userId,
+                provider: true
             }
         })
 
@@ -28,6 +29,13 @@ class SchedullerController {
 
                 },
             },
+            include: [
+                {
+                    model: User,
+                    as: 'User',
+                    attributes: ['name']
+                }
+            ],
             order: ['date']
         })
 

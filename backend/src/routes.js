@@ -14,9 +14,9 @@ import AvailableController from './app/controllers/AvailableController'
 const routes = new Router();
 const upload = multer(multerConfig);
 
+routes.post('/sessions', SessionController.store);
 routes.post('/users', UserController.store);
 routes.get('/users', UserController.index);
-routes.post('/sessions', SessionController.store);
 routes.use(AuthMiddleware);
 routes.put('/users', UserController.update);
 routes.post('/files', upload.single('file') , FileController.store)
