@@ -7,9 +7,7 @@ import DefaultLayout from '../Pages/_layouts/default'
 import {store} from '../store';
 
 export default function RouteWrapper({ component: Component, isPrivate = false, ...rest }) {
-    // const signed = false;
     const { signed } = store.getState().auth;
-    // console.log(state)
 
     if (!signed && isPrivate) {
         return <Redirect to="/" />
