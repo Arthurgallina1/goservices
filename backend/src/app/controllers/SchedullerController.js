@@ -20,7 +20,7 @@ class SchedullerController {
 
         const appointments = await Appointment.findAll({
             where: {
-                providerId: 10,
+                providerId: req.userId,
                 canceledAt: null,
                 date: {
                     [Op.between]: [
@@ -32,7 +32,7 @@ class SchedullerController {
             include: [
                 {
                     model: User,
-                    as: 'User',
+                    as: 'user',
                     attributes: ['name']
                 }
             ],
